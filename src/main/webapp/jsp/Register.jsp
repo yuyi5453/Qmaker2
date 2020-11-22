@@ -21,10 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <h1 style="text-align: center;">REGISTE</h1>
             <form action="UserRegisterAction.action" method="post">
                 <div class="form-group" style="width:100%;margin-bottom:20px;float: right;">
-                    用户名:<input type="text" class="form-control" name="UserID" style="width:165px;float:right;">
+                    用户名:<input type="text" class="form-control" name="userId" style="width:165px;float:right;">
                 </div>
                 <div class="form-group" style="width:100%;float:right;">
-                    密码:<input type="password" class="form-control" name="Password" style="width:165px;float:right;">
+                    密码:<input type="password" class="form-control" name="password" style="width:165px;float:right;">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary form-control" style="margin-top:30px;position:relative;left:42%;">注册</button>
