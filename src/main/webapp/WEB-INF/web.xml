@@ -1,7 +1,43 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <!-- SSH整合后web.xml配置 -->
+  <!-- web.xml文件中需要配置的信息有: -->
+  <!-- 1、防止乱码的过滤器 -->
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <!-- 2.配置struts2过滤器 -->
+  <filter>
+    <filter-name>Struts2</filter-name>
+    <filter-class>
+      org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+    </filter-class>
+    <!-- 指定action所在的package -->
+    <init-param>
+      <param-name>actionPackages</param-name>
+      <param-value>action</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>Struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 3.配置一个监听器将请求转发给 Spring框架 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- 4.配置一个参数，告诉容器，spring配置文建的位置 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
+
 </web-app>
