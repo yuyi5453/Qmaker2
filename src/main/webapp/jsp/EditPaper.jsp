@@ -1,11 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -36,7 +29,7 @@
                         </div>
       
                <div style="width: 70%;height: 800px;display: flex;flex: 1;flex-direction: column;">
-                   <div style="height: 50%;">
+                   <div style="height: 50%;overflow: auto;">
                     <form action="UpdatePaperAction.action" method="post">
                         <input type="text" name="questionNum" id="questionNum" value="0" hidden>
                       
@@ -170,6 +163,9 @@
                             </s:iterator>
                        
                     </form>
+                </div>
+                <div style="height: 50%;border-top:dotted 1px #000000;">
+        
                 </div>
         </div>
 
