@@ -36,7 +36,7 @@
            <p> <button class="" id="add_essay">简答题</button></p>   
         </div>
         <div style="width: 70%;height: 800px;display: flex;flex: 1;flex-direction: column;">
-            <div style="height: 50%;">
+            <div style="height: 50%;overflow: auto;">
                 <form action="CreateNewQuestionnaireAction.action" method="post">
                     <input type="text" name="questionNum" id="questionNum" value="0" hidden>
                     <button type="submit" class="" id="submit_btn">保存</button>

@@ -36,7 +36,7 @@
                         </div>
       
                <div style="width: 70%;height: 800px;display: flex;flex: 1;flex-direction: column;">
-                   <div style="height: 50%;">
+                   <div style="height: 50%;overflow: auto;">
                     <form action="UpdatePaperAction.action" method="post">
                         <input type="text" name="questionNum" id="questionNum" value="0" hidden>
                       
@@ -170,6 +170,9 @@
                             </s:iterator>
                        
                     </form>
+                </div>
+                <div style="height: 50%;border-top:dotted 1px #000000;">
+        
                 </div>
         </div>
 
