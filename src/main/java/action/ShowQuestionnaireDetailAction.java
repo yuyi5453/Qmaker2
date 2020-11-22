@@ -2,6 +2,7 @@ package action;
 
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionSupport;
 import service.QuestionnaireManagementService;
 
 public class ShowQuestionnaireDetailAction extends ActionSupport {
@@ -13,5 +14,6 @@ public class ShowQuestionnaireDetailAction extends ActionSupport {
 
     public String execute() {
         questionnaireContent = questionnaireManagementService.get_Questionnaire_By_QId(questionnaireId);
+        return null;
     }
 }
