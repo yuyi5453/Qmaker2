@@ -14,5 +14,6 @@ public class ShowQuestionnaireDetailAction extends ActionSupport {
 
     public String execute() {
         questionnaireContent = questionnaireManagementService.get_Questionnaire_By_QId(questionnaireId);
+        return null;
     }
 }
