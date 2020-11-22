@@ -16,11 +16,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import service.QuestionnaireManagementService;
 
-@Component("questionnaireManagementServiceImpl")
+@Component("questionnaireManagementService")
 public class QuestionnaireManagementServiceImpl implements QuestionnaireManagementService {
 	@Autowired
 	private QuestionnaireHeadInfoDao questionnaireHeadInfoDao;
+	@Autowired
 	private QuestionDetailDao questionDetailDao;
+	@Autowired
 	private OptionDetailDao optionDetailDao;
 	//获取问卷内容
 	@Override

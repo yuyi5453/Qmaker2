@@ -10,8 +10,12 @@ import org.hibernate.Transaction;
 import dao.AnswerDetailDao;
 import entity.AnswerDetail;
 import entity.AnswerDetailId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("answerDetailDao")
 public class AnswerDetailDaoImpl implements AnswerDetailDao{
+	@Autowired
 	SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {

@@ -22,6 +22,10 @@
 <!--	</bean>-->
 
 	<context:component-scan base-package="action"/>
+	<context:component-scan base-package="dao"/>
+	<context:component-scan base-package="daoImpl"/>
+	<context:component-scan base-package="service"/>
+	<context:component-scan base-package="serviceImpl"/>
 	<context:annotation-config/>
 
 	<bean id="dataSource"
@@ -64,89 +68,5 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<!-- Dao -->
-	<bean id="userDao" class="daoImpl.UserDocDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="questionnaireHeadInfoDao" class="daoImpl.QuestionnaireHeadInfoDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="questionDetailDao" class="daoImpl.QuestionDetailDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="optionDetailDao" class="daoImpl.OptionDetailDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="answerSheetHeadInfoDao" class="daoImpl.AnswerSheetHeadInfoDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="answerDetailDao" class="daoImpl.AnswerDetailDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	
-	
-	<!-- Service -->
-	<bean id="userService" class="serviceImpl.UserServiceImpl">
-		<property name="userDao" ref="userDao"></property>
-	</bean>
-	<bean id="quesHeadInfoService" class="serviceImpl.QuesHeadInfoServiceImpl">
-		<property name="quesHeadInfoDao" ref="questionnaireHeadInfoDao"></property>
-		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
-	</bean>
-	<bean id="questionnaireDetailService" class="serviceImpl.QuestionnaireDetailServiceImpl">
-		<property name="questionDetailDao" ref="questionDetailDao"></property>
-		<property name="optionDetailDao" ref="optionDetailDao"></property>
-		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
-		<property name="answerDetailDao" ref="answerDetailDao"></property>
-	</bean>
-	<bean id="optionDetailService" class="serviceImpl.OptionDetailServiceImpl">
-		<property name="optionDetailDao" ref="optionDetailDao"></property>
-	</bean>
-	<bean id="answerSheetHeadInfoService" class="serviceImpl.AnswerSheetHeadInfoServiceImpl">
-		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
-	</bean>
-	<bean id="answerDetailService" class="serviceImpl.AnswerDetailServiceImpl">
-		<property name="answerDetailDao" ref="answerDetailDao"></property>
-	</bean>
-	<bean id="statisticService" class="serviceImpl.StatisticServiceImpl">
-		<property name="questionnaireHeadInfoDao" ref="questionnaireHeadInfoDao"></property>
-		<property name="questionDetailDao" ref="questionDetailDao"></property>
-		<property name="optionDetailDao" ref="optionDetailDao"></property>
-		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
-		<property name="answerDetailDao" ref="answerDetailDao"></property>
-	</bean>
-	
-	<!-- Action -->
-	<bean id="userRegisterAction" class="action.UserRegisterAction">
-		<property name="userService" ref="userService"></property>
-	</bean>
-	<bean id="AdminRegisterAction" class="action.AdminRegisterAction">
-		<property name="userService" ref="userService"></property>
-	</bean>
-	<bean id="loginAction" class="action.LoginAction">
-		<property name="userService" ref="userService"></property>
-	</bean>
-	<bean id="searchUserAction" class="action.SearchUserAction">
-		<property name="userService" ref="userService"></property>
-	</bean>
-	<bean id="personalIndexAction" class="action.PersonalIndexAction">
-		<property name="quesHeadInfoService" ref="quesHeadInfoService"></property>
-		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
-		<property name="statisticService" ref="statisticService"></property>
-	</bean>
-	<bean id="createNewQuestionnaireAction" class="action.CreateNewQuestionnaireAction">
-		<property name="quesHeadInfoService" ref="quesHeadInfoService"></property>
-		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
-		<property name="optionDetailService" ref="optionDetailService"></property>
-	</bean>
-	<bean id="submitAnswerSheetAction" class="action.SubmitAnswerSheetAction">
-		<property name="answerSheetHeadInfoService" ref="answerSheetHeadInfoService"></property>
-		<property name="answerDetailService" ref="answerDetailService"></property>
-		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
-	</bean>
-	<bean id="updateQuestionnaireAction" class="action.UpdateQuestionnaireAction">
-		<property name="quesHeadInfoService" ref="quesHeadInfoService"></property>
-		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
-		<property name="optionDetailService" ref="optionDetailService"></property>
-	</bean>
+
 	</beans>

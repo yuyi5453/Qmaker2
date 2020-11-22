@@ -10,8 +10,10 @@ import org.hibernate.Transaction;
 
 import dao.QuestionnaireHeadInfoDao;
 import entity.QuestionnaireHeadInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
+	@Autowired
 	SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

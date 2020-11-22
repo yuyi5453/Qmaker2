@@ -10,8 +10,10 @@ import org.hibernate.Transaction;
 
 import dao.UserDocDao;
 import entity.UserDoc;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserDocDaoImpl implements UserDocDao{
+	@Autowired
 	SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

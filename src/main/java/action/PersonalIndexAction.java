@@ -30,7 +30,6 @@ public class PersonalIndexAction extends ActionSupport{
         	session.put("questionnaireStatus","UNPUBLISHED");
         	questionnaireList = personalIndexService.get_Unpublished_Questionnaire_By_UId(userId);
 		return SUCCESS;
-    	}
+	}
 
-	
 }
