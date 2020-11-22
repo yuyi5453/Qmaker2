@@ -11,7 +11,9 @@ import org.hibernate.Transaction;
 import dao.QuestionnaireHeadInfoDao;
 import entity.QuestionnaireHeadInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("questionnaireHeadInfoDao")
 public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 	@Autowired
 	SessionFactory sessionFactory;

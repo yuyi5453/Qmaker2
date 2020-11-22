@@ -3,6 +3,7 @@ package action;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionSupport;
 import entityStruct.Option;
 import entityStruct.Question;
 import service.QuestionnaireManagementService;
@@ -35,7 +36,7 @@ public class CreateQuestionnaireAction extends ActionSupport {
             }
             questions.add(question);
         }
-        questionnaireManagementService.insert_New_Questionnaire(questionnaireTitle, questionNum, userId, questions);
+        return questionnaireManagementService.insert_New_Questionnaire(questionnaireTitle, questionNum, userId, questions);
     }
     
 }

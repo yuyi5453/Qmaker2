@@ -11,7 +11,9 @@ import dao.OptionDetailDao;
 import entity.OptionDetail;
 import entity.OptionDetailId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("optionDetailDao")
 public class OptionDetailDaoImpl implements OptionDetailDao{
 	@Autowired
 	SessionFactory sessionFactory;
