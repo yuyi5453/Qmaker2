@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<!--	<bean id="dataSource"-->
+<!--		class="org.apache.commons.dbcp.BasicDataSource">-->
+<!--		<property name="url"-->
+<!--			value="jdbc:sqlserver://localhost:1433;DatabaseName=Qmaker">-->
+<!--		</property>-->
+<!--		<property name="username" value="Qmaker_sa"></property>-->
+<!--		<property name="password" value="123456"></property>-->
+<!--		<property name="driverClassName"-->
+<!--			value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>-->
+<!--		-->
+<!--	</bean>-->
+
+	<context:component-scan base-package="action"/>
+	<context:annotation-config/>
+
+	<bean id="dataSource"
+		  class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl"
+				  value="jdbc:mysql://8.131.78.121:3306/Qmaker?useSSL=false&amp;useUnicode=true&amp;characterEncoding=gbk">
+		</property>
+		<property name="user" value="560"></property>
+		<property name="password" value="123456"></property>
+		<property name="driverClass"
+				  value="com.mysql.jdbc.Driver"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource"/>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">false</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>entity/UserDoc.hbm.xml</value>
+				<value>entity/QuestionnaireHeadInfo.hbm.xml</value>
+				<value>entity/QuestionDetail.hbm.xml</value>
+				<value>entity/OptionDetail.hbm.xml</value>
+				<value>entity/AnswerSheetHeadInfo.hbm.xml</value>
+				<value>entity/AnswerDetail.hbm.xml</value></list>
+		</property></bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- Dao -->
+	<bean id="userDao" class="daoImpl.UserDocDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="questionnaireHeadInfoDao" class="daoImpl.QuestionnaireHeadInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="questionDetailDao" class="daoImpl.QuestionDetailDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="optionDetailDao" class="daoImpl.OptionDetailDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="answerSheetHeadInfoDao" class="daoImpl.AnswerSheetHeadInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="answerDetailDao" class="daoImpl.AnswerDetailDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<!-- Service -->
+	<bean id="userService" class="serviceImpl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="quesHeadInfoService" class="serviceImpl.QuesHeadInfoServiceImpl">
+		<property name="quesHeadInfoDao" ref="questionnaireHeadInfoDao"></property>
+		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
+	</bean>
+	<bean id="questionnaireDetailService" class="serviceImpl.QuestionnaireDetailServiceImpl">
+		<property name="questionDetailDao" ref="questionDetailDao"></property>
+		<property name="optionDetailDao" ref="optionDetailDao"></property>
+		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
+		<property name="answerDetailDao" ref="answerDetailDao"></property>
+	</bean>
+	<bean id="optionDetailService" class="serviceImpl.OptionDetailServiceImpl">
+		<property name="optionDetailDao" ref="optionDetailDao"></property>
+	</bean>
+	<bean id="answerSheetHeadInfoService" class="serviceImpl.AnswerSheetHeadInfoServiceImpl">
+		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
+	</bean>
+	<bean id="answerDetailService" class="serviceImpl.AnswerDetailServiceImpl">
+		<property name="answerDetailDao" ref="answerDetailDao"></property>
+	</bean>
+	<bean id="statisticService" class="serviceImpl.StatisticServiceImpl">
+		<property name="questionnaireHeadInfoDao" ref="questionnaireHeadInfoDao"></property>
+		<property name="questionDetailDao" ref="questionDetailDao"></property>
+		<property name="optionDetailDao" ref="optionDetailDao"></property>
+		<property name="answerSheetHeadInfoDao" ref="answerSheetHeadInfoDao"></property>
+		<property name="answerDetailDao" ref="answerDetailDao"></property>
+	</bean>
+	
+	<!-- Action -->
+	<bean id="userRegisterAction" class="action.UserRegisterAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="AdminRegisterAction" class="action.AdminRegisterAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="loginAction" class="action.LoginAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="searchUserAction" class="action.SearchUserAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="personalIndexAction" class="action.PersonalIndexAction">
+		<property name="quesHeadInfoService" ref="quesHeadInfoService"></property>
+		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
+		<property name="statisticService" ref="statisticService"></property>
+	</bean>
+	<bean id="createNewQuestionnaireAction" class="action.CreateNewQuestionnaireAction">
+		<property name="quesHeadInfoService" ref="quesHeadInfoService"></property>
+		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
+		<property name="optionDetailService" ref="optionDetailService"></property>
+	</bean>
+	<bean id="submitAnswerSheetAction" class="action.SubmitAnswerSheetAction">
+		<property name="answerSheetHeadInfoService" ref="answerSheetHeadInfoService"></property>
+		<property name="answerDetailService" ref="answerDetailService"></property>
+		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
+	</bean>
+	<bean id="updateQuestionnaireAction" class="action.UpdateQuestionnaireAction">
+		<property name="quesHeadInfoService" ref="quesHeadInfoService"></property>
+		<property name="questionnaireDetailService" ref="questionnaireDetailService"></property>
+		<property name="optionDetailService" ref="optionDetailService"></property>
+	</bean>
+	</beans>
