@@ -1,10 +1,11 @@
 package action;
 
+import com.opensymphony.xwork2.ActionSupport;
 import org.omg.PortableInterceptor.SUCCESSFUL;
 
 import service.UserService;
 
-public class LoginAction extends ActionSupport{
+public class LoginAction extends ActionSupport {
     
     UserService userService;
     String userId;
