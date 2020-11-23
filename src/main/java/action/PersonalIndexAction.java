@@ -8,14 +8,41 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import service.PersonalIndexService;
 
-
+@Component
 public class PersonalIndexAction extends ActionSupport{
-	
+	@Autowired
 	PersonalIndexService personalIndexService;
     	String userId;
-    	List questionnaireList = null;
+
+	public PersonalIndexService getPersonalIndexService() {
+		return personalIndexService;
+	}
+
+	public void setPersonalIndexService(PersonalIndexService personalIndexService) {
+		this.personalIndexService = personalIndexService;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public List getQuestionnaireList() {
+		return questionnaireList;
+	}
+
+	public void setQuestionnaireList(List questionnaireList) {
+		this.questionnaireList = questionnaireList;
+	}
+
+	List questionnaireList = null;
 	
 	public String execute(){
 		Map<String, Object> session = ActionContext.getContext().getSession();

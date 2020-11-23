@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <p> <label for="username"class="">User name ：</label><input type="text" name="userId" autocomplete="off"><label id="username_point">预留错误信息</label> </p>
             <p><label for="pwd"class="">Password ：</label><input type="password" name="password" autocomplete="off"><label id="pwd_point">预留错误信息</label></p>
             <div>
-                <input type="button" class="button" value="login up">
+                <input type="submit" class="button" value="login up">
                 <input type="reset" class="button" value="reset">
             </div>
         </form>

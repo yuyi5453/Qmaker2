@@ -11,8 +11,14 @@
 	<package namespace="/" name="default" extends="struts-default">
       	<action name="LoginAction" class="action.LoginAction">
             <result name="success" type="redirectAction">PersonalIndexAction</result>
-            <result name="WrongPassword">/Login.jsp</result>
-            <result name="UserNotExit">/Register.jsp</result>
+            <result name="WrongPassword">jsp/Login.jsp</result>
+            <result name="UserNotExist">jsp/Register.jsp</result>
       	</action>
+		<action name="PersonalIndexAction" class="action.PersonalIndexAction">
+			<result name="success">jsp/PersonalIndex.jsp</result>
+		</action>
+		<action name="GetUnpublished" class="action.PersonalIndexAction" method="exec_Get_Unpublished">
+			<result name="success">jsp/PersonalIndex.jsp</result>
+		</action>
     </package>
-</struts>    
+</struts>

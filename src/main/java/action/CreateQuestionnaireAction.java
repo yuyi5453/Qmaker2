@@ -6,10 +6,14 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 import entityStruct.Option;
 import entityStruct.Question;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import service.QuestionnaireManagementService;
 
+@Component
 public class CreateQuestionnaireAction extends ActionSupport {
 
+    @Autowired
     QuestionnaireManagementService questionnaireManagementService;
     String userId;
     String questionnaireTitle;
