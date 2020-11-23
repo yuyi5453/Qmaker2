@@ -13,6 +13,78 @@ import service.QuestionnaireManagementService;
 @Component
 public class UpdateQuestionnaireAction extends ActionSupport {
 
+    public QuestionnaireManagementService getQuestionnaireManagementService() {
+        return questionnaireManagementService;
+    }
+
+    public void setQuestionnaireManagementService(QuestionnaireManagementService questionnaireManagementService) {
+        this.questionnaireManagementService = questionnaireManagementService;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getQuestionnaireId() {
+        return questionnaireId;
+    }
+
+    public void setQuestionnaireId(String questionnaireId) {
+        this.questionnaireId = questionnaireId;
+    }
+
+    public String getQuestionnaireTitle() {
+        return questionnaireTitle;
+    }
+
+    public void setQuestionnaireTitle(String questionnaireTitle) {
+        this.questionnaireTitle = questionnaireTitle;
+    }
+
+    public int getQuestionNum() {
+        return questionNum;
+    }
+
+    public void setQuestionNum(int questionNum) {
+        this.questionNum = questionNum;
+    }
+
+    public String[] getQuestionContent() {
+        return questionContent;
+    }
+
+    public void setQuestionContent(String[] questionContent) {
+        this.questionContent = questionContent;
+    }
+
+    public String[] getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String[] questionType) {
+        this.questionType = questionType;
+    }
+
+    public String[] getOptionNum() {
+        return optionNum;
+    }
+
+    public void setOptionNum(String[] optionNum) {
+        this.optionNum = optionNum;
+    }
+
+    public String[][] getOptionContent() {
+        return optionContent;
+    }
+
+    public void setOptionContent(String[][] optionContent) {
+        this.optionContent = optionContent;
+    }
+
     @Autowired
     QuestionnaireManagementService questionnaireManagementService;
     String userId;

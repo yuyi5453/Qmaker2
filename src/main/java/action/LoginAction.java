@@ -1,5 +1,6 @@
 package action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.omg.PortableInterceptor.SUCCESSFUL;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import service.UserService;
 
 import javax.xml.ws.soap.Addressing;
+import java.util.Map;
 
 @Component
 public class LoginAction extends ActionSupport {
@@ -42,7 +44,9 @@ public class LoginAction extends ActionSupport {
 
     public String execute() {
         int status =  userService.login(userId, password);
+        Map<String, Object> session = ActionContext.getContext().getSession();
         if(status == 0) {
+            session.put("userId",userId);
             return SUCCESS;
         }
         else if(status == -1) {

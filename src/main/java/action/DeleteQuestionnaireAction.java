@@ -12,6 +12,22 @@ public class DeleteQuestionnaireAction extends ActionSupport {
     QuestionnaireManagementService questionnaireManagementService;
     String questionnaireId;
 
+    public QuestionnaireManagementService getQuestionnaireManagementService() {
+        return questionnaireManagementService;
+    }
+
+    public void setQuestionnaireManagementService(QuestionnaireManagementService questionnaireManagementService) {
+        this.questionnaireManagementService = questionnaireManagementService;
+    }
+
+    public String getQuestionnaireId() {
+        return questionnaireId;
+    }
+
+    public void setQuestionnaireId(String questionnaireId) {
+        this.questionnaireId = questionnaireId;
+    }
+
     public String execute() {
         questionnaireManagementService.delete_Questionnaire_By_QId(questionnaireId);
         return null;

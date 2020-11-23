@@ -23,6 +23,8 @@
 		<action name="CreateNewQuestionnaireAction" class="action.CreateQuestionnaireAction">
 			<result name="success" type="redirectAction">PersonalIndexAction</result>
 		</action>
-
+		<action name="FillOut" class="action.ShowQuestionnaireDetailAction">
+			<result name="success">jsp/FillOutQuestionnaire.jsp</result>
+		</action>
     </package>
 </struts>

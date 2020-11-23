@@ -23,6 +23,8 @@
 </head>
 
 <body>
+	<p>questionnaireId</p>
+	<p><s:property value="questionnaireId"/> </p>
 	<div class="container-fluid"
 		style="width: 100%; height: 100%;">
 		<div>
