@@ -16,7 +16,7 @@ import service.PersonalIndexService;
 public class PersonalIndexAction extends ActionSupport{
 	@Autowired
 	PersonalIndexService personalIndexService;
-    	String userId;
+	String userId;
 
 	public PersonalIndexService getPersonalIndexService() {
 		return personalIndexService;

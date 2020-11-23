@@ -51,7 +51,7 @@
 							<div class="card-body">
 									<div class="row">
 										<div class="col-md-6" style="width:100px;position:relative;left:47%;">
-											<a href="CreateQuestionnaire.jsp">
+											<a href="jsp/CreateQuestionnaire.jsp">
 												<h3>新建问卷</h3>
 											</a>
 										</div>

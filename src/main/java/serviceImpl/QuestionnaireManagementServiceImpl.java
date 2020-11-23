@@ -72,7 +72,7 @@ public class QuestionnaireManagementServiceImpl implements QuestionnaireManageme
 	@Override
 	public String insert_New_Questionnaire(String title, int questionNum, String userId,List<Question> questions) {
 
-		String questionnaireId = UUID.randomUUID().toString();
+		String questionnaireId = UUID.randomUUID().toString().replace("-","");
 
 		Timestamp curTime = new Timestamp(new Date().getTime());
 		questionnaireHeadInfoDao.insert_New_Quesitonnaire(questionnaireId,userId,title,questionNum,curTime,"UNPUBLISHED");

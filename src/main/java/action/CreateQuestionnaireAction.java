@@ -23,6 +23,70 @@ public class CreateQuestionnaireAction extends ActionSupport {
     String optionNum[] = new String[100];
     String optionContent[][] = new String[100][10];
 
+    public QuestionnaireManagementService getQuestionnaireManagementService() {
+        return questionnaireManagementService;
+    }
+
+    public void setQuestionnaireManagementService(QuestionnaireManagementService questionnaireManagementService) {
+        this.questionnaireManagementService = questionnaireManagementService;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getQuestionnaireTitle() {
+        return questionnaireTitle;
+    }
+
+    public void setQuestionnaireTitle(String questionnaireTitle) {
+        this.questionnaireTitle = questionnaireTitle;
+    }
+
+    public int getQuestionNum() {
+        return questionNum;
+    }
+
+    public void setQuestionNum(int questionNum) {
+        this.questionNum = questionNum;
+    }
+
+    public String[] getQuestionContent() {
+        return questionContent;
+    }
+
+    public void setQuestionContent(String[] questionContent) {
+        this.questionContent = questionContent;
+    }
+
+    public String[] getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String[] questionType) {
+        this.questionType = questionType;
+    }
+
+    public String[] getOptionNum() {
+        return optionNum;
+    }
+
+    public void setOptionNum(String[] optionNum) {
+        this.optionNum = optionNum;
+    }
+
+    public String[][] getOptionContent() {
+        return optionContent;
+    }
+
+    public void setOptionContent(String[][] optionContent) {
+        this.optionContent = optionContent;
+    }
+
     public String execute() {
         List<Question> questions = new ArrayList<Question>();
         for(int i = 1; i <= questionNum; i++) {
@@ -40,7 +104,8 @@ public class CreateQuestionnaireAction extends ActionSupport {
             }
             questions.add(question);
         }
-        return questionnaireManagementService.insert_New_Questionnaire(questionnaireTitle, questionNum, userId, questions);
+        questionnaireManagementService.insert_New_Questionnaire(questionnaireTitle, questionNum, userId, questions);
+        return SUCCESS;
     }
     
 }
