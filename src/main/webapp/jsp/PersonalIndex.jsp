@@ -19,6 +19,12 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+	
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -36,14 +42,6 @@
 										<button class="btn btn-basic form-control" type="submit" 
 											formaction="PersonalIndexUnpublishedAction.action">未发布的问卷</button>
 									</div>
-									<div class="row" style="width:100px;position:relative;left:47%;margin-top: 10px;">
-										<button class="btn btn-basic form-control" type="submit" 
-											formaction="PersonalIndexFilledAction.action">我填写的问卷</button>
-									</div>
-									<div class="row" style="width:100px;position:relative;left:47%;margin-top: 10px;">
-										<button class="btn btn-basic form-control" type="submit"
-											formaction="PersonalIndexOthersAction.action">问卷广场</button>
-									</div>
 								</form>
 					</div>
 					<div class="col-md-8">
@@ -57,7 +55,7 @@
 										</div>
 									</div>
 									<hr>
-								<s:iterator value="QuestionnaireList" id="id" status="st">
+								<s:iterator value="questionnaireList" id="id" status="st">
 									<div class="row">
 										<div class="col-md-10">
 											<div class="row">
@@ -82,16 +80,11 @@
 												value=<s:property value="#id.questionnaireId"/> hidden>
 											<s:if
 												test="#session.QuestionnaireStatus == 'PUBLISHED'">
-												<div class="col-md-4">
+												<div class="col-md-6">
 												</div>
 												<div class="col-md-2">
 													<button class="btn btn-outline-danger" type="submit"
 														formaction="DeleteQuestionnaireAction.action">删除</button>
-												</div>
-
-												<div class="col-md-2">
-													<button class="btn btn-outline-secondary" type="submit"
-														formaction="QuestionnaireDetailAction.action">查看</button>
 												</div>
 												<div class="col-md-2">
 													<button class="btn btn-outline-secondary" type="submit"
@@ -99,21 +92,16 @@
 												</div>
 												<div class="col-md-2">
 													<button class="btn btn-outline-secondary" type="submit"
-														formaction="FillOutQuestionnaireAction.action">填写</button>
+														formaction="ShareQuestionnaireAction.action">分享</button>
 												</div>
 											</s:if>
 
 											<s:elseif
 												test="#session.QuestionnaireStatus == 'UNPUBLISHED'">
-												<div class="col-md-4"></div>
+												<div class="col-md-6"></div>
 												<div class="col-md-2">
 													<button class="btn btn-outline-danger" type="submit"
 														formaction="DeleteQuestionnaireAction.action">删除</button>
-												</div>
-
-												<div class="col-md-2">
-													<button class="btn btn-outline-secondary" type="submit"
-														formaction="QuestionnaireDetailAction.action">查看</button>
 												</div>
 												<div class="col-md-2">
 													<button class="btn btn-outline-secondary" type="submit"
