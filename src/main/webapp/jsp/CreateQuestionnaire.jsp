@@ -28,8 +28,8 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="static/js/CreateQuestionnaire.js" charset="utf-8"></script>
-<link rel="stylesheet" href="icon.css">
+<script src="/static/js/CreateQuestionnaire.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/static/icon/icon.css">
 </head>
 
 <body>
@@ -101,7 +101,7 @@
 																</div>
 															</div>
 															<div class="for-edit">
-																<input type="text" name="questionnairetTitle" id="" value="title"
+																<input type="text" name="questionnaireTitle" id="" value="title"
 																	class="form-control">
 															</div>
 														</div>

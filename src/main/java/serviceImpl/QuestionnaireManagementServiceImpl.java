@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import service.QuestionnaireManagementService;
+import util.UUIDUtil;
 
 @Component("questionnaireManagementService")
 public class QuestionnaireManagementServiceImpl implements QuestionnaireManagementService {
@@ -72,18 +73,21 @@ public class QuestionnaireManagementServiceImpl implements QuestionnaireManageme
 	@Override
 	public String insert_New_Questionnaire(String title, int questionNum, String userId,List<Question> questions) {
 
-		String questionnaireId = UUID.randomUUID().toString().replace("-","");
+		String questionnaireId = UUIDUtil.get16UUID();
+
 
 		Timestamp curTime = new Timestamp(new Date().getTime());
 		questionnaireHeadInfoDao.insert_New_Quesitonnaire(questionnaireId,userId,title,questionNum,curTime,"UNPUBLISHED");
-		int quesNo = 0;
+		int quesNo = 1;
 		for(Question question:questions){
-			questionDetailDao.insert_question_detail(questionnaireId,quesNo++,question.getQuestionContent(),question.getQuestionType(),question.getOptionNum());
+			questionDetailDao.insert_question_detail(questionnaireId,quesNo,question.getQuestionContent(),question.getQuestionType(),question.getOptionNum());
 			List<Option> optionList = question.getOptionList();
-			int opNo=0;
+			int opNo=1;
+			System.out.println(optionList==null);
 			for (Option option:optionList){
 				optionDetailDao.insert_Option_Detail(questionnaireId,quesNo,opNo++,option.getOptionContent());
 			}
+			quesNo++;
 		}
 		return questionnaireId;
 	}
@@ -96,7 +100,11 @@ public class QuestionnaireManagementServiceImpl implements QuestionnaireManageme
 
 		questionDetailDao.delete_Qustion_Detail_By_QId(questionnaireId);
 
-		optionDetailDao.delete_Option_Detail((OptionDetail) optionDetailDao.get_Option_Detail_By_QId(questionnaireId));
+		List<OptionDetail> option_details = optionDetailDao.get_Option_Detail_By_QId(questionnaireId);
+		for (OptionDetail optionDetail  : option_details){
+			optionDetailDao.delete_Option_Detail(optionDetail);
+		}
+
 	}
 
 
@@ -113,8 +121,10 @@ public class QuestionnaireManagementServiceImpl implements QuestionnaireManageme
 
 	@Override
 	public void update_Questionnaire_By_QId(String questionnaireId,String title, int questionNum, String userId,List<Question> questions) {
-		if(questionnaireHeadInfoDao.get_Questionnaire_By_QId(questionnaireId).size()!=0)
+		if(questionnaireHeadInfoDao.get_Questionnaire_By_QId(questionnaireId).size()!=0){
+			System.out.println("delete");
 			delete_Questionnaire_By_QId(questionnaireId);
+		}
 		insert_New_Questionnaire(title,questionNum,userId,questions);
 	}
 }

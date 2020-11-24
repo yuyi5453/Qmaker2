@@ -33,15 +33,24 @@ public class ShowQuestionnaireDetailAction extends ActionSupport {
     public void setQuestionnaireContent(List questionnaireContent) {
         this.questionnaireContent = questionnaireContent;
     }
+    public String getQuestionnaireTitle() {
+        return questionnaireTitle;
+    }
+
+    public void setQuestionnaireTitle(String questionnaireTitle) {
+        this.questionnaireTitle = questionnaireTitle;
+    }
 
     @Autowired
     QuestionnaireManagementService questionnaireManagementService;
     String questionnaireId;
+    String questionnaireTitle;
     List questionnaireContent;
 
     public String execute() {
         System.out.println(questionnaireId);
-//        questionnaireContent = questionnaireManagementService.get_Questionnaire_By_QId(questionnaireId);
+        questionnaireContent = questionnaireManagementService.get_Questionnaire_By_QId(questionnaireId);
+        System.out.println(questionnaireContent.size());
         return "success";
     }
 }

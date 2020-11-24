@@ -1,5 +1,6 @@
 package action;
 
+import com.opensymphony.xwork2.ActionSupport;
 import service.AnswerService;
 
 public class FillOutQuestionnaireAction extends ActionSupport {

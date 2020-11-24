@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@page isELIgnored="false" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -27,7 +28,7 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="icon.css">
+<link rel="stylesheet" href="/static/icon/icon.css">
 </head>
 
 <body>
@@ -44,7 +45,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8"
-				style=" height: 100%;background-image: url(pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
+				style=" height: 100%;background-image: url(/static/pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
 				<div class="row">
 					<div class="col-md-4">
 						<div class="card"
@@ -53,12 +54,12 @@
 								<form>
 									<div class="row">
 										<button class="btn btn-basic form-control" type="submit" style="height: 80px"
-											formaction="PersonalIndexAction.action"><img src="pic/ButtonPublished.jpg" width="100%"></button>
+											formaction="PersonalIndexAction.action"><img src="/static/pic/ButtonPublished.png" width="100%"></button>
 
 									</div>
 									<div class="row">
 										<button class="btn btn-basic form-control" type="submit" style="height: 80px"
-											formaction="PersonalIndexUnpublishedAction.action"><img src="pic/ButtonUnpublished.jpg" width="100%"></button>
+											formaction="PersonalIndexUnpublishedAction.action"><img src="/static/pic/ButtonUnpublished.png" width="100%"></button>
 
 									</div>
 								</form>
@@ -76,17 +77,16 @@
 											
 										</div>
 									</div>
-									<s:if test="#session.UserRank >= 2">
+
 									<div class="row">
 										<div class="col-md-12">
-											<a href="CreateQuestionnaire.jsp">
+											<a href="/jsp/CreateQuestionnaire.jsp">
 												<p class="iconfont icon-create-new-file" style="font-size:50px;text-align: center;"></p>
 												<h3 style="text-align: center;">新建问卷</h3>
 											</a>
 										</div>
 									</div>
 									<hr>
-									</s:if>
 								<s:iterator value="questionnaireList" id="id" status="st">
 									<div class="row">
 										<div class="col-md-2">
@@ -115,7 +115,7 @@
 												value=<s:property value="#id.questionnaireId"/> hidden>
 
 											<s:if
-												test="#session.QuestionnaireStatus == 'PUBLISHED'">
+												test="#session.questionnaireStatus == 'PUBLISHED'">
 												<div class="col-md-6">
 												</div>
 												<div class="col-md-2">
@@ -130,10 +130,10 @@
 													<button class="btn btn-outline-secondary" type="submit"
 														formaction="ShareQuestionnaireAction.action">分享</button>
 												</div>
-											</s:elseif>
+											</s:if>
 
 											<s:elseif
-												test="#session.QuestionnaireStatus == 'UNPUBLISHED'">
+												test="#session.questionnaireStatus == 'UNPUBLISHED'">
 												<div class="col-md-6"></div>
 												<div class="col-md-2">
 													<button class="btn btn-outline-danger" type="submit"

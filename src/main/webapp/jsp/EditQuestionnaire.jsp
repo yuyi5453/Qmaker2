@@ -30,8 +30,8 @@
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="EditQuestionnaire.js" charset="utf-8"></script>
-<link rel="stylesheet" href="icon.css">
+<script src="/static/js/EditQuestionnaire.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/static/icon/icon.css">
 </head>
 
 <body>
@@ -95,15 +95,18 @@
 											</div>
 											<div class="row question-bar">
 												<div class="col-md-12">
+													<div class="row">
+														<input type="text" name="questionnaireId" value="<s:property value="questionnaireId"/>">
+													</div>
 													<div class="row question-content-bar form-group">
 														<div class="col-md-12">
 															<div class="for-preview">
 																<div>
-																	<h3 style="text-align: center;"><s:property value="QuestionnaireTitle" /></h3>
+																	<h3 style="text-align: center;"><s:property value="questionnaireTitle" /></h3>
 																</div>
 															</div>
 															<div class="for-edit">
-																<input type="text" name="title" id="" value="<s:property value="QuestionnaireTitle" />"
+																<input type="text" name="title" id="" value="<s:property value="questionnaireTitle" />"
 																	class="form-control">
 															</div>
 														</div>
@@ -120,19 +123,19 @@
 												</div>
 											</div>
 											<hr>
-											<s:iterator value="QuestionnaireContent" id="id" status="st">
+											<s:iterator value="questionnaireContent" id="id" status="st">
 												<div class="row question-bar">
                                                 <div class="col-md-12">
                                                     <div class="row question-content-bar form-group">
                                                         <div class="col-md-12">
                                                         	<input type='text' name='optionNum[<s:property value="#id.questionNo"/>]' class='optionNum' value='2' hidden>
                                                             <div class="for-preview">
-                                                                <div><h5><s:property value="#id.questionContent" />(QuestionContent)</h5></div>
+                                                                <div><h5><s:property value="#id.questionContent" /></h5></div>
                                                             </div>
                                                             <div class="for-edit">
                                                                 <input type="text" name="questionContent[<s:property value="#id.questionNo"/>]" id="" value="<s:property value="#id.questionContent" />" class="form-control" >
                                                             </div>
-                                                            <s:if test="#id.questionType=='single'">
+                                                            <s:if test="#id.questionType=='单选题'">
                                                             <div class="for-preview">
                                                                 <p>单选题</p>
                                                             </div>
@@ -144,7 +147,7 @@
                                                                 	<s:iterator value="#id.optionList" id="subId" status="subSt">
                                                                     <tr class="for-preview">
                                                                         <td><p class="iconfont icon-option"></p></td>
-                                                                        <td><p><s:property value="#subId.optionContent" />(option)</p></td>
+                                                                        <td><p><s:property value="#subId.optionContent" /></p></td>
                                                                     </tr>
                                                                     <tr class="for-edit" >
                                                                         <td><p class="iconfont icon-option"></p></td>
@@ -154,7 +157,7 @@
                                                                 </tbody>
                                                             </table>
                                                             </s:if>
-                                                            <s:if test="#id.questionType=='multi'">
+                                                            <s:if test="#id.questionType=='多选题'">
                                                             <div class="for-preview">
                                                                 <p>多选题</p>
                                                             </div>
@@ -166,7 +169,7 @@
                                                                 	<s:iterator value="#id.optionList" id="subId" status="subSt">
                                                                     <tr class="for-preview">
                                                                         <td><p class="iconfont icon-multi-option"></p></td>
-                                                                        <td><p><s:property value="#subId.optionContent" />(option)</p></td>
+                                                                        <td><p><s:property value="#subId.optionContent" /></p></td>
                                                                     </tr>
                                                                     <tr class="for-edit" >
                                                                         <td><p class="iconfont icon-multi-option"></p></td>
@@ -176,7 +179,7 @@
                                                                 </tbody>
                                                             </table>
                                                             </s:if>
-                                                            <s:if test="#id.questionType=='essay'">
+                                                            <s:if test="#id.questionType=='简答题'">
                                                             	<div class="for-preview">
                                                                 	<p>简答题</p>
                                                             	</div>

@@ -44,7 +44,7 @@ $(document).ready(
 */
 $(document).ready(
     function () {
-    	var tempString = $(".question-bar:last").find(".optionNum").prop("name");
+    	var tempString = $(".question-bar:last").find(".questionContent").prop("name");
     	console.log(tempString);
     	if(tempString != null){
     		var leftp = tempString.indexOf("[");

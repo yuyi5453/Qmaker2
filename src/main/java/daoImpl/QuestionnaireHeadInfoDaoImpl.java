@@ -30,7 +30,7 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		List list = null;
 		try{
-			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Status='yes'");
+			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Status='PUBLISHED'");
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		List list = null;
 		try{
-			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Status='no'");
+			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Status='UNPUBLISHED'");
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();

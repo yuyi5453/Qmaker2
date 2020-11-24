@@ -95,14 +95,19 @@ public class CreateQuestionnaireAction extends ActionSupport {
             question.setQuestionNo(i);
             question.setQuestionContent(questionContent[i]);
             question.setQuestionType(questionType[i]);
-            question.setOptionNum(Integer.parseInt(optionNum[i]));
+            if(!questionType[i].equals("简答题")){
+                question.setOptionNum(Integer.parseInt(optionNum[i]));
+            }
+            else
+                question.setOptionNum(0);
             List<Option> options = new ArrayList<Option>();
-            for(int j = 1; i <= Integer.parseInt(optionNum[i]); j++) {
+            for(int j = 0; j < question.getOptionNum(); j++) {
                 Option option = new Option();
                 option.setOptionContent(optionContent[i][j]);
-                option.setOptionNo(j);
+                option.setOptionNo(j+1);
                 options.add(option);
             }
+            question.setOptionList(options);
             questions.add(question);
         }
         userId = (String) ActionContext.getContext().getSession().get("userId");
