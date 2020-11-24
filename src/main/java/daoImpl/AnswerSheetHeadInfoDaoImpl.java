@@ -10,9 +10,12 @@ import org.hibernate.Transaction;
 
 import dao.AnswerSheetHeadInfoDao;
 import entity.AnswerSheetHeadInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("answerSheetHeadInfoDao")
 public class AnswerSheetHeadInfoDaoImpl implements AnswerSheetHeadInfoDao{
-	
+	@Autowired
 	SessionFactory sessionFactory;
 	
 	public SessionFactory getSessionFactory() {

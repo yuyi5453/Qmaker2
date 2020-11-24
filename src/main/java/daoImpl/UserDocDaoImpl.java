@@ -10,8 +10,12 @@ import org.hibernate.Transaction;
 
 import dao.UserDocDao;
 import entity.UserDoc;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("userDocDao")
 public class UserDocDaoImpl implements UserDocDao{
+	@Autowired
 	SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

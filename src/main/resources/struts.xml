@@ -9,75 +9,22 @@
 	<constant name="struts.devMode" value="false" />
 
 	<package namespace="/" name="default" extends="struts-default">
-       	<action name="UserRegisterAction" class="action.UserRegisterAction">
-            <result name="success">/RegisterSuccess.jsp</result>
-            <result name="failure">/RegisterFailure.jsp</result>
-      	</action>
-      	<action name="AdminRegisterAction" class="action.AdminRegisterAction">
-            <result name="success">/RegisterSuccess.jsp</result>
-            <result name="failure">/RegisterFailure.jsp</result>
-      	</action>
       	<action name="LoginAction" class="action.LoginAction">
             <result name="success" type="redirectAction">PersonalIndexAction</result>
-            <result name="WrongPassword">/Login.jsp</result>
-            <result name="UserNotExit">/Register.jsp</result>
+            <result name="WrongPassword">jsp/Login.jsp</result>
+            <result name="UserNotExist">jsp/Register.jsp</result>
       	</action>
-      	<action name="SearchUserAction" class="action.SearchUserAction">
-      		<result name="success" >/UserInfo.jsp</result>
-      		<result name="failure" >/UserNotExist.jsp</result>
-      	</action>
-      	<action name="PersonalIndexAction" class="action.PersonalIndexAction">
-      		<result name="success">/PersonalIndex.jsp</result>
-      	</action>
-      	<action name="PersonalIndexUnpublishedAction" class="action.PersonalIndexAction" method="exec_Get_Unpublished_By_UId">
-      		<result name="success" >/PersonalIndex.jsp</result>
-      	</action>
-      	<action name="PersonalIndexFilledAction" class="action.PersonalIndexAction" method="exec_Get_Filled_By_UId">
-      		<result name="success" >/PersonalIndex.jsp</result>
-      	</action>
-      	<action name="PersonalIndexOthersAction" class="action.PersonalIndexAction" method="exec_Get_Others_By_UId">
-      		<result name="success" >/PersonalIndex.jsp</result>
-      	</action>
-      	<action name="StatisticAction" class="action.PersonalIndexAction" method="exec_Show_Statistics">
-      		<result name="questionnaire">/Statistics.jsp</result>
-      		<result name="paper">/Statistics.jsp</result>
-      	</action>
-      	<action name="CreateNewQuestionnaireAction" class="action.CreateNewQuestionnaireAction">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
-      	<action name="EditQuestionnaireAction" class="action.PersonalIndexAction" method="exec_show_detail">
-      		<result name="questionnaire">/EditQuestionnaire.jsp</result>
-      		<result name="paper">/EditPaper.jsp</result>
-      	</action>
-      	<action name="UpdateQuestionnaireAction" class="action.UpdateQuestionnaireAction">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
-      	<action name="UpdatePaperAction" class="action.UpdatePaperAction">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
-      	<action name="CreateNewPaperAction" class="action.CreateNewPaperAction">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
-      	<action name="PublishAction" class="action.PersonalIndexAction" method="exec_publish">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
-      	<action name="DeleteQuestionnaireAction" class="action.PersonalIndexAction" method="exec_delete">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
-      	<action name="QuestionnaireDetailAction" class="action.PersonalIndexAction" method="exec_show_detail">
-      		<result name="questionnaire">/QuestionnaireDetail.jsp</result>
-      		<result name="paper">/QuestionnaireDetail.jsp</result>
-      	</action>
-      	<action name="FilledQuestionnaireDetailAction" class="action.PersonalIndexAction" method="exec_show_answerSheet">
-      		<result name="questionnaire">/ShowFilledQuestionnaire.jsp</result>
-      		<result name="paper">/ShowFilledPaper.jsp</result>
-      	</action>
-      	<action name="FillOutQuestionnaireAction" class="action.PersonalIndexAction" method="exec_show_detail">
-      		<result name="questionnaire">/FillOutQuestionnaire.jsp</result>
-      		<result name="paper">/FillOutPaper.jsp</result>
-      	</action>
-      	<action name="SubmitAnswerSheetAction" class="action.SubmitAnswerSheetAction">
-      		<result name="success" type="redirectAction">PersonalIndexAction</result>
-      	</action>
+		<action name="PersonalIndexAction" class="action.PersonalIndexAction">
+			<result name="success">jsp/PersonalIndex.jsp</result>
+		</action>
+		<action name="PersonalIndexUnpublishedAction" class="action.PersonalIndexAction" method="exec_Get_Unpublished">
+			<result name="success">jsp/PersonalIndex.jsp</result>
+		</action>
+		<action name="CreateNewQuestionnaireAction" class="action.CreateQuestionnaireAction">
+			<result name="success" type="redirectAction">PersonalIndexAction</result>
+		</action>
+		<action name="FillOut" class="action.ShowQuestionnaireDetailAction">
+			<result name="success">jsp/FillOutQuestionnaire.jsp</result>
+		</action>
     </package>
-</struts>    
+</struts>

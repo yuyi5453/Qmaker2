@@ -16,15 +16,21 @@ import entity.QuestionDetail;
 import entityStruct.Option;
 import entityStruct.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import service.StatisticService;
 
+@Component("statisticService")
 public class StatisticServiceImpl implements StatisticService {
 
     @Autowired
     private QuestionnaireHeadInfoDao questionnaireHeadInfoDao;
+    @Autowired
 	private QuestionDetailDao questionDetailDao;
+    @Autowired
 	private OptionDetailDao optionDetailDao;
+    @Autowired
 	private AnswerSheetHeadInfoDao answerSheetHeadInfoDao;
+    @Autowired
 	private AnswerDetailDao answerDetailDao;
 
     @Override

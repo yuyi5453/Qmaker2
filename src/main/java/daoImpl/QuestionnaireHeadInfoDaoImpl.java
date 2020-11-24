@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -10,8 +11,12 @@ import org.hibernate.Transaction;
 
 import dao.QuestionnaireHeadInfoDao;
 import entity.QuestionnaireHeadInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("questionnaireHeadInfoDao")
 public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
+	@Autowired
 	SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -25,7 +30,7 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		List list = null;
 		try{
-			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Published='yes'");
+			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Status='yes'");
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -40,7 +45,7 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		List list = null;
 		try{
-			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Published='no'");
+			Query query = session.createQuery("from QuestionnaireHeadInfo where UserID='"+userId+"' and Status='no'");
 			list = query.list();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -90,6 +95,12 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		QuestionnaireHeadInfo quesitonnaireHeadInfo = new QuestionnaireHeadInfo();
 		//set...
+		quesitonnaireHeadInfo.setStatus(status);
+		quesitonnaireHeadInfo.setQuestionnaireId(questionnaireId);
+		quesitonnaireHeadInfo.setUserId(userId);
+		quesitonnaireHeadInfo.setQuestionNum(questionNum);
+		quesitonnaireHeadInfo.setLastChangedTime(new Timestamp(new Date().getTime()));
+
 		session.save(quesitonnaireHeadInfo);
 		ts.commit();
 		session.close();

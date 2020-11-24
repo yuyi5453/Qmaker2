@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public int login(String userId, String password) {
         // TODO Auto-generated method stub
-        UserDoc userdoc = (UserDoc)userDocDao.select_User(userId).get(0);
+        UserDoc userdoc = (userDocDao.select_User(userId).size()==0)?null:(UserDoc)userDocDao.select_User(userId).get(0);
         if( userdoc == null){
             return -1;
         }

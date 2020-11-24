@@ -3,18 +3,21 @@ package serviceImpl;
 import dao.AnswerDetailDao;
 import dao.AnswerSheetHeadInfoDao;
 import entity.AnswerSheetHeadInfo;
+import entityStruct.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import service.AnswerService;
 
 import java.util.UUID;
 
-@Component("answerServiceImpl")
+@Component("answerService")
 public class AnswerServiceImpl implements AnswerService{
 
     @Autowired
     private AnswerSheetHeadInfoDao answerSheetHeadInfoDao;
+    @Autowired
     private AnswerDetailDao answerDetailDao;
+
     
     @Override
     public String insert_New_AnswerSheet(String questionnaireId) {

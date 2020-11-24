@@ -10,8 +10,12 @@ import org.hibernate.Transaction;
 import dao.OptionDetailDao;
 import entity.OptionDetail;
 import entity.OptionDetailId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component("optionDetailDao")
 public class OptionDetailDaoImpl implements OptionDetailDao{
+	@Autowired
 	SessionFactory sessionFactory;
 	
 	public List get_Option_Detail_By_QId_QNo(String questionnaireId, String questionNo){
