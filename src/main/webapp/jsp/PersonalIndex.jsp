@@ -19,44 +19,79 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-	
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
 <link rel="stylesheet"
 	href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="icon.css">
 </head>
 
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid"
+		style="width: 100%; height: 100%;background-color: #c3e1f598">
 		<div class="row">
-			<div class="col-md-8" style="width:100%;margin-top:100px;border:1px solid black;padding-top:50px;">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" style="padding-left: 0px;padding-right: 0px;">
+				<nav class="navbar navbar-expand-sm bg-light" role="navigation">
+				<a class="navbar-brand" href="#">Qmaker</a>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8"
+				style=" height: 100%;background-image: url(pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
 				<div class="row">
 					<div class="col-md-4">
+						<div class="card"
+							style="margin-left: 30%;margin-top: 15px;height: 90%;box-shadow: 0px 0px 10px 5px #c3e1f5b7;min-height: 900px;">
+							<div class="card-body">
 								<form>
-									<div class="row" style="width:100px;position:relative;left:47%;">
-										<button class="btn btn-basic form-control" type="submit" 
-											formaction="PersonalIndexAction.action" >我发布的问卷</button>
+									<div class="row">
+										<button class="btn btn-basic form-control" type="submit" style="height: 80px"
+											formaction="PersonalIndexAction.action"><img src="pic/ButtonPublished.jpg" width="100%"></button>
+
 									</div>
-									<div class="row" style="width:100px;position:relative;left:47%;margin-top: 10px;">
-										<button class="btn btn-basic form-control" type="submit" 
-											formaction="PersonalIndexUnpublishedAction.action">未发布的问卷</button>
+									<div class="row">
+										<button class="btn btn-basic form-control" type="submit" style="height: 80px"
+											formaction="PersonalIndexUnpublishedAction.action"><img src="pic/ButtonUnpublished.jpg" width="100%"></button>
+
 									</div>
 								</form>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-8">
-						<div class="card">
-							<div class="card-body">
+						<div class="card"
+							style=";margin-right: 20%;margin-top: 15px;height: 90%;box-shadow: 0px 0px 10px 5px #c3e1f5b7;">
+							<div class="card-body"
+								style="padding-right:50px;padding-left: 50px ;min-height: 900px;">
+								<img src="" alt="">
 									<div class="row">
-										<div class="col-md-6" style="width:100px;position:relative;left:47%;">
-											<a href="jsp/CreateQuestionnaire.jsp">
-												<h3>新建问卷</h3>
+										<div class="col-md-12">
+											
+										</div>
+									</div>
+									<s:if test="#session.UserRank >= 2">
+									<div class="row">
+										<div class="col-md-12">
+											<a href="CreateQuestionnaire.jsp">
+												<p class="iconfont icon-create-new-file" style="font-size:50px;text-align: center;"></p>
+												<h3 style="text-align: center;">新建问卷</h3>
 											</a>
 										</div>
 									</div>
 									<hr>
+									</s:if>
 								<s:iterator value="questionnaireList" id="id" status="st">
 									<div class="row">
+										<div class="col-md-2">
+											<p class="iconfont icon-icon_doc_fill" style="font-size:50px"></p>
+										</div>
 										<div class="col-md-10">
 											<div class="row">
 												<div class="col-md-12">
@@ -75,9 +110,10 @@
 										</div>
 									</div>
 									<form action="#" method="post">
-										<div class="row" style="width:200px;position: relative;left:47%;">
-											<input type="text" name="QuestionnaireId"
+										<div class="row">
+											<input type="text" name="questionnaireId"
 												value=<s:property value="#id.questionnaireId"/> hidden>
+
 											<s:if
 												test="#session.QuestionnaireStatus == 'PUBLISHED'">
 												<div class="col-md-6">
@@ -94,7 +130,7 @@
 													<button class="btn btn-outline-secondary" type="submit"
 														formaction="ShareQuestionnaireAction.action">分享</button>
 												</div>
-											</s:if>
+											</s:elseif>
 
 											<s:elseif
 												test="#session.QuestionnaireStatus == 'UNPUBLISHED'">
@@ -114,6 +150,7 @@
 											</s:elseif>
 										</div>
 									</form>
+
 								</s:iterator>
 							</div>
 						</div>
