@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
@@ -6,6 +7,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -19,164 +21,208 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
 
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="EditQuestionnaire.js" charset="utf-8"></script>
+<link rel="stylesheet" href="icon.css">
 </head>
 
 <body>
-    <div  style="text-align: center;">
-        <nav>
-           <a class="" href="#">预留导航栏</a>
-        </nav>
-    </div>
-        <div style="display: flex;flex: 1;">
-                        <div style="width: 30%;height: 650px;text-align: center;">
-                            <p><button class="" id="add_single">单选题</button></p> 
-                            <p><button class="" id="add_multi">多选题</button></p>
-                           <p> <button class="" id="add_essay">简答题</button></p>   
-                        </div>
-      
-               <div style="width: 70%;height: 800px;display: flex;flex: 1;flex-direction: column;">
-                   <div style="height: 50%;overflow: auto;">
-                    <form action="UpdatePaperAction.action" method="post">
-                        <input type="text" name="questionNum" id="questionNum" value="0" hidden>
-                      
-                           
-                                    <button type="submit" class="btn btn-success" id="submit_btn">保存</button>
-                            
-                                                <h3 style="text-align: center;"><s:property value="QuestionnaireTitle"/></h3>
+	<div class="container-fluid"
+		style="width: 100%; height: 100%;background-color: #c3e1f598">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" style="padding-left: 0px;padding-right: 0px;">
+				<nav class="navbar navbar-expand-sm bg-light" role="navigation">
+				<a class="navbar-brand" href="#">Brand</a>
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="#" class="nav-link">nav-1</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">nav-2</a></li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="#" class="nav-link">new
+							account</a></li>
+					<li class="nav-item"><a href="#" class="nav-link">sign in</a>
+					</li>
+				</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8"
+				style=" height: 100%;min-height: 900px ;background-image: url(pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="card"
+							style="margin-left: 30%;margin-top: 20px;height: 90%;box-shadow: 0px 0px 10px 5px #c3e1f5b7;min-height: 900px">
+							<div class="card-body">
+								<div class="row">
+									<button class="btn btn-basic form-control" id="add_single">单选题</button>
 
-                                                <input type="text" name="title" id="" value="<s:property value="QuestionnaireTitle"/>"
-                                                >
-              
-                                            <button class="btn btn-outline-secondary edit-btn">
-                                                <p class="" style="margin-bottom: 0em;">编辑</p>
-                                            </button>
-                             <hr>
-                            <s:iterator value="QuestionnaireContent" id="id" status="st">
-                               
-                                    <div class="">
-                                       
-                                            <input type='text' name='optionNum[<s:property value="#id.questionNo"/>]' class='optionNum' value='<s:property value="#id.optionNum"/>' hidden>
-                                           
-                                                <div><h5><s:property value="#id.questionContent" /></h5></div>
-                                           
-                                            
-                                                <input type="text" name="Question[<s:property value="#id.questionNo"/>]" id="" value="<s:property value="#id.questionContent" />" >
-                                            
-                                            <s:if test="#id.questionType=='single'">
-                                           
-                                                <p>单选题</p>
-                                            
-                                            
-                                                <input type="text" name="questionType[<s:property value="#id.questionNo"/>]"  value="单选题" readonly>
-                                            
-                                            
-                                                    <div class="">分值：</div>
-                                                    <div class=""><p style="margin-bottom: 0px"><s:property value="#id.score"/></p></div>
-                                            
-                                           
-                                                分值：<input type='text' name='score[<s:property value="#id.questionNo"/>]' class='form-control score' value='<s:property value="#id.score"/>'>
-                                            
-                                            <table class="" style="word-break: break-all;">
-                                                <tbody>
-                                                    <s:iterator value="#id.optionList" id="subId" status="subSt">
-                                                    <tr class="">
-                                                        <s:if test="#subId.isStandardAnswer == 'yes'">
-                                                            <td><p class="iconfont icon-option" style="color: #178bc9"></p></td>
-                                                        </s:if>
-                                                        <s:else>
-                                                            <td><p class="iconfont icon-option"></p></td>
-                                                        </s:else>
-                                                        <td><p><s:property value="#subId.optionContent" /></p></td>
-                                                    </tr>
-                                                    <tr class="" >
-                                                        <td><p class=""></p></td>
-                                                        <td><input type="text" name="option[<s:property value="#subId.questionNo"/>]" id=""  value="<s:property value="#subId.optionContent" />"></td>
-                                                        <s:if test="#subId.isStandardAnswer == 'yes'">
-                                                            <td><input type='radio' name='standardAnswer[<s:property value="#subId.questionNo"/>]' id='' class='' value='<s:property value="#subId.optionNo"/>' checked></td>
-                                                        </s:if>
-                                                        <s:else>
-                                                            <td><input type='radio' name='standardAnswer[<s:property value="#subId.questionNo"/>]' id='' class='' value='<s:property value="#subId.optionNo"/>'></td>
-                                                        </s:else>
-                                                        
-                                                    </tr>
-                                                    </s:iterator>
-                                                </tbody>
-                                            </table>
-                                            </s:if>
-                                            <s:if test="#id.questionType=='multi'">
-                                                <p>多选题</p>
+								</div>
+								<div class="row">
+									<button class="btn btn-basic form-control" id="add_multi">多选题</button>
 
-                                                <input type="text" name="questionType[<s:property value="#id.questionNo"/>]" id=""  value="多选题" readonly>
-                                           
-                                        
-                                               
-                                                    <div class="">分值：</div>
-                                                    <div class=""><p style="margin-bottom: 0px"><s:property value="#id.score"/></p></div>
-                                               
-                                            
-                                           
-                                                分值：<input type='text' name='score[<s:property value="#id.questionNo"/>]' class='form-control score' value='<s:property value="#id.score"/>'>
-                                            
-                                            <table class="" style="word-break: break-all;">
-                                                <tbody>
-                                                    <s:iterator value="#id.optionList" id="subId" status="subSt">
-                                                    <tr>
-                                                        <s:if test="#subId.isStandardAnswer == 'yes'">
-                                                            <td><p class="iconfont icon-multi-option" style="color: #178bc9"></p></td>
-                                                        </s:if>
-                                                        <s:else>
-                                                            <td><p class="iconfont icon-multi-option"></p></td>
-                                                        </s:else>
-                                                        <td><p><s:property value="#subId.optionContent" /></p></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><p class="iconfont icon-multi-option"></p></td>
-                                                        <td><input type="text" name="option[<s:property value="#subId.questionNo"/>]" id="" value="<s:property value="#subId.optionContent" />"></td>
-                                                        <s:if test="#subId.isStandardAnswer == 'yes'">
-                                                            <td><input type='checkbox' name='standardAnswer[<s:property value="#subId.questionNo"/>]' id='' class='' value='<s:property value="#subId.optionNo"/>' checked></td>
-                                                        </s:if>
-                                                        <s:else>
-                                                            <td><input type='checkbox' name='standardAnswer[<s:property value="#subId.questionNo"/>]' id='' class='' value='<s:property value="#subId.optionNo"/>'></td>
-                                                        </s:else>
-                                                    </tr>
-                                                    </s:iterator>
-                                                </tbody>
-                                            </table>
-                                            </s:if>
-                                            <s:if test="#id.questionType=='essay'">
-                                               
-                                                    <p>简答题</p>
+								</div>
+								<div class="row">
+									<button class="btn btn-basic form-control" id="add_essay">简答题</button>
 
-                                                    <input type="text" name="questionType[<s:property value="#id.questionNo"/>]" id=""value="简答题" readonly>      
-                                            </s:if>
-                                        
-                                    </div>
-                                  
-                                       
-                                            <button class="" ><p class="" style="margin-bottom: 0em;">上移</p></button>
-                                 
-                                       
-                                            <button class="" ><p class="" style="margin-bottom: 0em;">下移</p></button>
-                                       
-                                       
-                                            <button class=""><p class="" style="margin-bottom: 0em;">编辑</p></button>
-                                        
-                                       
-                                            <button class=""><p class="" style="margin-bottom: 0em;">删除</p></button>
-                                       
-                                   
-                             
-                            </s:iterator>
-                       
-                    </form>
-                </div>
-                <div style="height: 50%;border-top:dotted 1px #000000;">
-        
-                </div>
-        </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card"
+									style="margin-right: 15%;margin-top: 20px;height: 90%;box-shadow: 0px 0px 10px 5px #c3e1f5b7;height: 580px;overflow: auto;">
+									<form action="UpdateQuestionnaireAction.action" method="post">
+										<input type="text" name="questionNum" id="questionNum" value="0" hidden>
+										<div class="card-body" id="preview_bar">
+											<div class="row">
+												<div class="col-md-10"></div>
+												<div class="col-md-2">
+													<button type="submit" class="btn btn-success" id="submit_btn">保存</button>
+												</div>
+											</div>
+											<div class="row question-bar">
+												<div class="col-md-12">
+													<div class="row question-content-bar form-group">
+														<div class="col-md-12">
+															<div class="for-preview">
+																<div>
+																	<h3 style="text-align: center;"><s:property value="QuestionnaireTitle" /></h3>
+																</div>
+															</div>
+															<div class="for-edit">
+																<input type="text" name="title" id="" value="<s:property value="QuestionnaireTitle" />"
+																	class="form-control">
+															</div>
+														</div>
+													</div>
+													<div class="row control-bar">
+														<div class="col-md-10"></div>
+														<div class="col-md-2">
+															<button class="btn btn-outline-secondary edit-btn">
+																<p class="iconfont icon-ic_edit"
+																	style="margin-bottom: 0em;">编辑</p>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<hr>
+											<s:iterator value="QuestionnaireContent" id="id" status="st">
+												<div class="row question-bar">
+                                                <div class="col-md-12">
+                                                    <div class="row question-content-bar form-group">
+                                                        <div class="col-md-12">
+                                                        	<input type='text' name='optionNum[<s:property value="#id.questionNo"/>]' class='optionNum' value='2' hidden>
+                                                            <div class="for-preview">
+                                                                <div><h5><s:property value="#id.questionContent" />(QuestionContent)</h5></div>
+                                                            </div>
+                                                            <div class="for-edit">
+                                                                <input type="text" name="questionContent[<s:property value="#id.questionNo"/>]" id="" value="<s:property value="#id.questionContent" />" class="form-control" >
+                                                            </div>
+                                                            <s:if test="#id.questionType=='single'">
+                                                            <div class="for-preview">
+                                                                <p>单选题</p>
+                                                            </div>
+                                                            <div class="for-edit">
+                                                                <input type="text" name="questionType[<s:property value="#id.questionNo"/>]" id="" class="form-control" value="单选题" readonly>
+                                                            </div>
+                                                            <table class="option-table" style="word-break: break-all;">
+                                                                <tbody>
+                                                                	<s:iterator value="#id.optionList" id="subId" status="subSt">
+                                                                    <tr class="for-preview">
+                                                                        <td><p class="iconfont icon-option"></p></td>
+                                                                        <td><p><s:property value="#subId.optionContent" />(option)</p></td>
+                                                                    </tr>
+                                                                    <tr class="for-edit" >
+                                                                        <td><p class="iconfont icon-option"></p></td>
+                                                                        <td><input type="text" name="optionContent[<s:property value="#subId.questionNo"/>]" id="" class="form-control" value="<s:property value="#subId.optionContent" />"></td>
+                                                                    </tr>
+                                                                    </s:iterator>
+                                                                </tbody>
+                                                            </table>
+                                                            </s:if>
+                                                            <s:if test="#id.questionType=='multi'">
+                                                            <div class="for-preview">
+                                                                <p>多选题</p>
+                                                            </div>
+                                                            <div class="for-edit">
+                                                                <input type="text" name="questionType[<s:property value="#id.questionNo"/>]" id="" class="form-control" value="多选题" readonly>
+                                                            </div>
+                                                            <table class="option-table" style="word-break: break-all;">
+                                                                <tbody>
+                                                                	<s:iterator value="#id.optionList" id="subId" status="subSt">
+                                                                    <tr class="for-preview">
+                                                                        <td><p class="iconfont icon-multi-option"></p></td>
+                                                                        <td><p><s:property value="#subId.optionContent" />(option)</p></td>
+                                                                    </tr>
+                                                                    <tr class="for-edit" >
+                                                                        <td><p class="iconfont icon-multi-option"></p></td>
+                                                                        <td><input type="text" name="optionContent[<s:property value="#subId.questionNo"/>]" id="" class="form-control" value="<s:property value="#subId.optionContent" />"></td>
+                                                                    </tr>
+                                                                    </s:iterator>
+                                                                </tbody>
+                                                            </table>
+                                                            </s:if>
+                                                            <s:if test="#id.questionType=='essay'">
+                                                            	<div class="for-preview">
+                                                                	<p>简答题</p>
+                                                            	</div>
+                                                            	<div class="for-edit">
+                                                                	<input type="text" name="questionType[<s:property value="#id.questionNo"/>]" id="" class="form-control" value="简答题" readonly>
+                                                            	</div>
+                                                            </s:if>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row control-bar" >
+                                                        <div class="col-md-4"></div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn btn-outline-secondary up-btn" ><p class="iconfont icon-ic_up_line" style="margin-bottom: 0em;">上移</p></button>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn btn-outline-secondary down-btn" ><p class="iconfont icon-ic_down_line" style="margin-bottom: 0em;">下移</p></button>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn btn-outline-secondary edit-btn"><p class="iconfont icon-ic_edit" style="margin-bottom: 0em;">编辑</p></button>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button class="btn btn-outline-danger delete-btn"><p class="iconfont icon-delete" style="margin-bottom: 0em;">删除</p></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											</s:iterator>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card"
+									style="margin-right: 15%;margin-top: 20px;height: 90%;box-shadow: 0px 0px 10px 5px #c3e1f5b7;height: 300px;overflow: auto;">
+									<div class="card-body" id="oprate_bar"></div>
+								</div>
+							</div>
+						</div>
 
-											
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 </html>
-
