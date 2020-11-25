@@ -7,6 +7,8 @@ import java.util.List;
 public interface QuestionnaireManagementService {
     
     public List get_Questionnaire_By_QId(String questionnaireId);//获取问卷内容
+    
+    public List get_QuestionnaireHeadInfo_By_QId(String questionnaireId);//获取问卷头信息
 
     public String insert_New_Questionnaire(String title, int questionNum, String userId, List<Question> questions);//新建问卷
 
