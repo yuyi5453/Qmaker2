@@ -55,7 +55,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8"
-				style=" height: 100%;min-height: 900px ;background-image: url(pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
+				style=" height: 100%;min-height: 900px ;background-image: url(/static/pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card"

@@ -9,17 +9,6 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<!--	<bean id="dataSource"-->
-<!--		class="org.apache.commons.dbcp.BasicDataSource">-->
-<!--		<property name="url"-->
-<!--			value="jdbc:sqlserver://localhost:1433;DatabaseName=Qmaker">-->
-<!--		</property>-->
-<!--		<property name="username" value="Qmaker_sa"></property>-->
-<!--		<property name="password" value="123456"></property>-->
-<!--		<property name="driverClassName"-->
-<!--			value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>-->
-<!--		-->
-<!--	</bean>-->
 
 	<context:component-scan base-package="action"/>
 	<context:component-scan base-package="dao"/>
@@ -28,12 +17,23 @@
 	<context:component-scan base-package="serviceImpl"/>
 	<context:annotation-config/>
 
+<!--		<bean id="dataSource"-->
+<!--			class="org.apache.commons.dbcp.BasicDataSource">-->
+<!--			<property name="url"-->
+<!--				value="jdbc:mysql://8.131.78.121:3306/qmaker">-->
+<!--			</property>-->
+<!--			<property name="username" value="560"></property>-->
+<!--			<property name="password" value="123456"></property>-->
+<!--			<property name="driverClassName"-->
+<!--				value="com.mysql.jdbc.Driver"></property>-->
+<!--		</bean>-->
+
 	<bean id="dataSource"
 		  class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="jdbcUrl"
-				  value="jdbc:mysql://127.0.0.1:3306/qmaker?useSSL=false&amp;useUnicode=true&amp;characterEncoding=gbk">
+				  value="jdbc:mysql://8.131.78.121:3306/qmaker">
 		</property>
-		<property name="user" value="root"></property>
+		<property name="user" value="560"></property>
 		<property name="password" value="123456"></property>
 		<property name="driverClass"
 				  value="com.mysql.jdbc.Driver"></property>

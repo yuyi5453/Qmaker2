@@ -14,6 +14,9 @@
             <result name="WrongPassword">jsp/Login.jsp</result>
             <result name="UserNotExist">jsp/Register.jsp</result>
       	</action>
+		<action name="UserRegisterAction" class="action.RegisterAction">
+			<result name="success">jsp/Login.jsp</result>
+		</action>
 		<action name="PersonalIndexAction" class="action.PersonalIndexAction">
 			<result name="success">jsp/PersonalIndex.jsp</result>
 		</action>
