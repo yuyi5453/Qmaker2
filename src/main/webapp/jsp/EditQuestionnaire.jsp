@@ -85,7 +85,7 @@
 								<div class="card"
 									style="margin-right: 15%;margin-top: 20px;height: 90%;box-shadow: 0px 0px 10px 5px #c3e1f5b7;height: 580px;overflow: auto;">
 									<form action="UpdateQuestionnaireAction.action" method="post">
-										<input type="text" name="questionNum" id="questionNum" value="0" hidden>
+										<input type="text" name="questionNum" id="questionNum" value='<s:property value="questionNum" />' hidden>
 										<div class="card-body" id="preview_bar">
 											<div class="row">
 												<div class="col-md-10"></div>
@@ -96,7 +96,7 @@
 											<div class="row question-bar">
 												<div class="col-md-12">
 													<div class="row">
-														<input type="text" name="questionnaireId" value="<s:property value="questionnaireId"/>">
+														<input type="text" name="questionnaireId" value="<s:property value="questionnaireId"/>" hidden>
 													</div>
 													<div class="row question-content-bar form-group">
 														<div class="col-md-12">
@@ -106,8 +106,7 @@
 																</div>
 															</div>
 															<div class="for-edit">
-																<input type="text" name="title" id="" value="<s:property value="questionnaireTitle" />"
-																	class="form-control">
+																<input type="text" name="questionnaireTitle"  value="<s:property value="questionnaireTitle" />"  class="form-control">
 															</div>
 														</div>
 													</div>
@@ -128,7 +127,7 @@
                                                 <div class="col-md-12">
                                                     <div class="row question-content-bar form-group">
                                                         <div class="col-md-12">
-                                                        	<input type='text' name='optionNum[<s:property value="#id.questionNo"/>]' class='optionNum' value='2' hidden>
+                                                        	<input type='text' name='optionNum[<s:property value="#id.questionNo"/>]' class='optionNum' value='<s:property value="#id.optionNum" />' hidden>
                                                             <div class="for-preview">
                                                                 <div><h5><s:property value="#id.questionContent" /></h5></div>
                                                             </div>

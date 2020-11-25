@@ -27,13 +27,22 @@
 			<result name="success">jsp/EditQuestionnaire.jsp</result>
 		</action>
 		<action name="UpdateQuestionnaireAction" class="action.UpdateQuestionnaireAction">
-			<result name="success" type="redirectAction">PersonalIndexAction</result>
+			<result name="success" type="redirectAction">PersonalIndexUnpublishedAction</result>
 		</action>
 		<action name="FillOut" class="action.ShowQuestionnaireDetailAction">
 			<result name="success">jsp/FillOutQuestionnaire.jsp</result>
 		</action>
 		<action name="DeleteQuestionnaireAction" class="action.DeleteQuestionnaireAction">
 			<result name="success" type="redirectAction">PersonalIndexAction</result>
+		</action>
+		<action name="PublishAction" class="action.PublishQuestionnaireAction">
+			<result name="success" type="redirectAction">PersonalIndexAction</result>
+		</action>
+		<action name="SubmitAnswerSheetAction" class="action.FillOutQuestionnaireAction">
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="StatisticAction" class="action.StatisticAction">
+			<result name="success">jsp/Statistics.jsp</result>
 		</action>
     </package>
 	

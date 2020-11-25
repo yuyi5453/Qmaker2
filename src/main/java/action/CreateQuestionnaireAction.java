@@ -110,6 +110,7 @@ public class CreateQuestionnaireAction extends ActionSupport {
             question.setOptionList(options);
             questions.add(question);
         }
+        System.out.println(questionnaireTitle);
         userId = (String) ActionContext.getContext().getSession().get("userId");
         questionnaireManagementService.insert_New_Questionnaire(questionnaireTitle, questionNum, userId, questions);
         return SUCCESS;

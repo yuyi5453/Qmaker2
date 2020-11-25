@@ -99,6 +99,7 @@ public class UpdateQuestionnaireAction extends ActionSupport {
 
     public String execute(){
         List<Question> questions = new ArrayList<Question>();
+
         for(int i = 1; i <= questionNum; i++) {
             Question question = new Question();
             question.setQuestionNo(i);

@@ -37,7 +37,7 @@ public class StatisticServiceImpl implements StatisticService {
     public List getStatistics(String questionnaireId) {
         // TODO Auto-generated method stub
         Map session = ActionContext.getContext().getSession();
-		String userId = (String) session.get("UserID");
+		String userId = (String) session.get("userId");
 		List Ques_list = questionDetailDao.get_question_detail(questionnaireId);
 		Iterator Ques_list_iter = Ques_list.iterator();
 		List questionnaire = new ArrayList<Question>();

@@ -3,6 +3,8 @@ package action;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
+import entity.QuestionnaireHeadInfo;
+import entityStruct.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import service.QuestionnaireManagementService;
@@ -30,9 +32,7 @@ public class ShowQuestionnaireDetailAction extends ActionSupport {
         return questionnaireContent;
     }
 
-    public void setQuestionnaireContent(List questionnaireContent) {
-        this.questionnaireContent = questionnaireContent;
-    }
+
     public String getQuestionnaireTitle() {
         return questionnaireTitle;
     }
@@ -45,11 +45,28 @@ public class ShowQuestionnaireDetailAction extends ActionSupport {
     QuestionnaireManagementService questionnaireManagementService;
     String questionnaireId;
     String questionnaireTitle;
-    List questionnaireContent;
+    List<Question> questionnaireContent;
+    int questionNum;
+
+    public int getQuestionNum() {
+        return questionNum;
+    }
+
+    public void setQuestionNum(int questionNum) {
+        this.questionNum = questionNum;
+    }
+
+    public void setQuestionnaireContent(List<Question> questionnaireContent) {
+        this.questionnaireContent = questionnaireContent;
+    }
 
     public String execute() {
         System.out.println(questionnaireId);
+        QuestionnaireHeadInfo questionnaireHeadInfo = (QuestionnaireHeadInfo)questionnaireManagementService.get_QuestionnaireHeadInfo_By_QId(questionnaireId).get(0);
+        questionnaireTitle = questionnaireHeadInfo.getTitle();
+        questionNum = questionnaireHeadInfo.getQuestionNum();
         questionnaireContent = questionnaireManagementService.get_Questionnaire_By_QId(questionnaireId);
+
         System.out.println(questionnaireContent.size());
         return "success";
     }

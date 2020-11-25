@@ -1,5 +1,6 @@
 package daoImpl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -66,7 +67,7 @@ public class AnswerDetailDaoImpl implements AnswerDetailDao{
 			 Query query = session.createSQLQuery("select count(*) from AnswerDetail where AnswerSheetID in "
 			 		+ "(select AnswerSheetID from AnswerSheetHeadInfo where QuestionnaireID = '"+questionnaireId+"') "
 			 		+ "and Answer like '%"+optionNo+"%' and QuestionNo = '"+questionNo+"'");
-			 count = (Integer) query.list().get(0);
+			 count = Integer.valueOf(query.list().get(0).toString());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

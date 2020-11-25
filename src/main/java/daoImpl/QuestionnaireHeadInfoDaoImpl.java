@@ -95,6 +95,7 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		QuestionnaireHeadInfo quesitonnaireHeadInfo = new QuestionnaireHeadInfo();
 		//set...
+		quesitonnaireHeadInfo.setTitle(title);
 		quesitonnaireHeadInfo.setStatus(status);
 		quesitonnaireHeadInfo.setQuestionnaireId(questionnaireId);
 		quesitonnaireHeadInfo.setUserId(userId);
@@ -111,6 +112,8 @@ public class QuestionnaireHeadInfoDaoImpl implements QuestionnaireHeadInfoDao{
 		Transaction ts = session.beginTransaction();
 		try{
 			QuestionnaireHeadInfo questionnaireHeadInfo= (QuestionnaireHeadInfo) session.load(QuestionnaireHeadInfo.class, questionnaireId);
+//			QuestionnaireHeadInfo questionnaireHeadInfo = new QuestionnaireHeadInfo();
+//			questionnaireHeadInfo.setQuestionnaireId(questionnaireId);
 			questionnaireHeadInfo.setStatus(status);
 			session.update(questionnaireHeadInfo);
 		}catch(Exception e){

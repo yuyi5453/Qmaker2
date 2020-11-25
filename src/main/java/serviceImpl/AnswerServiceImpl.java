@@ -7,6 +7,7 @@ import entityStruct.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import service.AnswerService;
+import util.UUIDUtil;
 
 import java.util.UUID;
 
@@ -22,9 +23,9 @@ public class AnswerServiceImpl implements AnswerService{
     @Override
     public String insert_New_AnswerSheet(String questionnaireId) {
         // TODO Auto-generated method stub
-        String answerSheetId = UUID.randomUUID().toString();
+        String answerSheetId = UUIDUtil.get16UUID();
         answerSheetHeadInfoDao.insert_New_AnswerSheet(answerSheetId, questionnaireId);
-        return null;
+        return answerSheetId;
     }
 
     @Override

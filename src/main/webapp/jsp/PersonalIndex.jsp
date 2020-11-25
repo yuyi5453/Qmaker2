@@ -29,9 +29,40 @@
 <script
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/static/icon/icon.css">
+
+	<script type="text/javascript">
+		function copyText(obj){
+            var basePath = "";
+            var curRequestPath = window.document.location.href;
+            console.log("curRequestPath:" + curRequestPath);
+            //获取项目请求路径 /people/toGetPeopleList.action
+            var pathName = window.document.location.pathname;
+            console.log("pathName:" + pathName);
+            var ipAndPort = curRequestPath.indexOf(pathName);
+            console.log("ipAndPort:" + ipAndPort);
+            var localhostPath = curRequestPath.substring(0,ipAndPort);
+            console.log("localhostPath:" + localhostPath);
+            var projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+            console.log("projectName:" + projectName);
+            basePath = localhostPath + projectName;
+
+
+			var input = obj.parentNode.parentNode.children[0];
+			var input2 = document.createElement('input');
+			obj.parentNode.append(input2)
+			input2.type='text';
+			input2.value = basePath+'/FillOut.action?questionnaireId='+input.value;
+			input2.select();
+			document.execCommand("copy");//执行浏览器复制命令
+			obj.parentNode.removeChild(input2);
+			alert("分享链接已复制到剪切板");
+		}
+	</script>
+
 </head>
 
 <body>
+<% int cnt=0; %>
 	<div class="container-fluid"
 		style="width: 100%; height: 100%;background-color: #c3e1f598">
 		<div class="row">
@@ -110,9 +141,8 @@
 										</div>
 									</div>
 									<form action="#" method="post">
-										<div class="row">
-											<input type="text" name="questionnaireId"
-												value=<s:property value="#id.questionnaireId"/> hidden>
+										<div class="row quesHeadBar">
+											<input   type="text" name="questionnaireId" value=<s:property value="#id.questionnaireId"/> hidden  >
 
 											<s:if
 												test="#session.questionnaireStatus == 'PUBLISHED'">
@@ -127,8 +157,7 @@
 														formaction="StatisticAction.action">统计</button>
 												</div>
 												<div class="col-md-2">
-													<button class="btn btn-outline-secondary" type="submit"
-														formaction="ShareQuestionnaireAction.action">分享</button>
+													<button type="button" class="btn btn-outline-secondary" value=<s:property value="#id.questionnaireId"/>  onclick="copyText(this)">分享</button>
 												</div>
 											</s:if>
 
@@ -160,4 +189,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

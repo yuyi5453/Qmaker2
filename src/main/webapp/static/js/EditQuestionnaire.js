@@ -44,17 +44,20 @@ $(document).ready(
 */
 $(document).ready(
     function () {
-    	var tempString = $(".question-bar:last").find(".questionContent").prop("name");
-    	console.log(tempString);
-    	if(tempString != null){
-    		var leftp = tempString.indexOf("[");
-            var rightp = tempString.indexOf("]");
-            questionNum = tempString.slice(leftp + 1, rightp);
-    	}
-    	else{
-    		questionNum = 0;
-    	}
-    	window.alert(questionNum);
+    	// var tempString = $(".question-bar:last").find(".optionNum").attr("name");
+    	// console.log(tempString);
+    	// if(tempString != null){
+    	// 	var leftp = tempString.indexOf("[");
+        //     var rightp = tempString.indexOf("]");
+        //     questionNum = tempString.slice(leftp + 1, rightp);
+    	// }
+    	// else{
+    	// 	questionNum = 0;
+    	// }
+    	// window.alert(questionNum);
+        questionNum = document.getElementById('questionNum').value;
+        // questionNum = $('#questionNum').value;
+        // window.alert(questionNum);
     	$("#submit_btn").click(fullfill_questionNum);
         $("#add_single").click(add_single);
         $("#add_multi").click(add_multi);
@@ -206,7 +209,7 @@ function save_edit() {
 }
 
 function add_single() {
-	questionNum = +questionNum +1;;
+	questionNum = +questionNum +1;
     $("#preview_bar").append("<div class='row question-bar'>"
         + "<div class='col-md-12'>"
         + "<div class='row question-content-bar form-group'>"
@@ -263,6 +266,8 @@ function add_single() {
         + "</div>"
         + "</div>"
         + "</div>");
+
+
     $(".for-preview").show();
     $(".for-edit").hide();
     $(".question-bar").mouseleave(

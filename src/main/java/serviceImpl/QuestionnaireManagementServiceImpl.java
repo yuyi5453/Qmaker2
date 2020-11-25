@@ -69,6 +69,11 @@ public class QuestionnaireManagementServiceImpl implements QuestionnaireManageme
 		return questionnaire;
 	}
 
+	@Override
+	public List get_QuestionnaireHeadInfo_By_QId(String questionnaireId) {
+		return questionnaireHeadInfoDao.get_Questionnaire_By_QId(questionnaireId);
+	}
+
 
 	@Override
 	public String insert_New_Questionnaire(String title, int questionNum, String userId,List<Question> questions) {
@@ -116,7 +121,7 @@ public class QuestionnaireManagementServiceImpl implements QuestionnaireManageme
 
 	@Override
 	public void publish_Questionnaire(String questionnaireId) {
-		questionnaireHeadInfoDao.update_Published(questionnaireId,"PUBLICSHED");
+		questionnaireHeadInfoDao.update_Published(questionnaireId,"PUBLISHED");
 	}
 
 	@Override

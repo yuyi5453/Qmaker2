@@ -54,12 +54,12 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8"
-				style=" height: 100%;background-image: url(pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
+				style=" height: 100%;background-image: url(/static/pic/RegisterBackground.jpg);background-repeat: no-repeat;background-size: cover;">
 				<div class="card"
 					style="margin-left: 20%;margin-right: 20%;margin-top: 3%;height: 90%;;box-shadow: 0px 0px 10px 5px #c3e1f5b7;">
 					<div class="card-body"
 						style="padding-left: 10%;padding-right: 10%;">
-						<input type="text" value="<s:property value="questionnaireId" />" >
+
 						<div class="row">
 							<div class="col-md-12">
 								<h2 style="text-align: center;"><s:property value="questionnaireTitle"/></h2>
@@ -67,13 +67,14 @@
 						</div>
 						<hr>
 						<form method="post">
+							<input name="questionnaireId" type="text" value="<s:property value="questionnaireId" />" hidden >
 						<s:iterator value="questionnaireContent" id="id" status="st">
 							<div class="row">
 								<div class="col-md-12">
 									<h4>
 										<s:property value="#id.questionContent" />
 									</h4>
-									<s:if test="#id.questionType=='single'">
+									<s:if test="#id.questionType=='单选题'">
 										<div class="single">
 											<table>
 												<tbody>
@@ -90,7 +91,7 @@
 											</table>
 										</div>
 									</s:if>
-									<s:elseif test="#id.questionType=='multi'">
+									<s:elseif test="#id.questionType=='多选题'">
 										<div class="multi">
 											<table>
 												<tbody>

@@ -30,6 +30,6 @@ public class DeleteQuestionnaireAction extends ActionSupport {
 
     public String execute() {
         questionnaireManagementService.delete_Questionnaire_By_QId(questionnaireId);
-        return null;
+        return SUCCESS;
     }
 }
